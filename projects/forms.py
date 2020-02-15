@@ -31,3 +31,8 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('title', 'description', 'image', 'url')
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
