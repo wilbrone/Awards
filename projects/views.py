@@ -8,6 +8,8 @@ from django.views.generic import RedirectView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
+from .serializer import ProjectSerializer, ProfileSerializer
+from rest_framework import status 
 
 from .forms import *
 from .models import *
@@ -96,4 +98,3 @@ class ProfileList(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)
 
-        
