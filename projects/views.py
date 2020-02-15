@@ -61,10 +61,16 @@ def profile(request):
     return render(request, 'registration/profile.html',locals())
 
 
-@login_required(login_url='login')
+@csrf_exempt
 def index(request):
 
-    return render(request, 'prjts/index.html')
+    try:
+        all_posts = Project.objects.all()
+        
+    except Project.DoesNotExist:
+        posts = None
+
+    return render(request, 'prjts/index.html', {'all_posts': all_posts})
 
 
 
