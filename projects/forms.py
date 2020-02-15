@@ -24,3 +24,10 @@ class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic', 'bio', 'location']
+
+
+class UploadForm(forms.ModelForm):
+    # image = ImageField(label='image')
+    class Meta:
+        model = Project
+        fields = ('title', 'description', 'image', 'url')

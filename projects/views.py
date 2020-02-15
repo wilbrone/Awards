@@ -105,3 +105,20 @@ class ProfileList(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)
 
+
+@login_required(login_url='login')
+def posts(request):
+    users = User.objects.exclude(id=request.user.id)
+    if request.method == 'POST':
+        form = UploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+            return redirect('index')
+    else:
+        form = UploadForm()
+
+    return render(request, 'post.html', {'form': form}, {'users':users})
+
+    
