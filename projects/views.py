@@ -119,7 +119,7 @@ def posts(request):
     else:
         form = UploadForm()
 
-    return render(request, 'post.html', {'form': form}, {'users':users})
+    return render(request, 'prjts/post.html', {'form': form}, {'users':users})
 
 
 @login_required(login_url='login')
@@ -166,7 +166,7 @@ def single_post(request, post):
         'rating_status': rating_status
 
     }
-    return render(request, 'singlepost.html', params)
+    return render(request, 'prjts/singlepost.html', params)
 
     # return render(request, 'single_post.html', {'image':image})
 
@@ -183,4 +183,5 @@ def search_project(request):
         return render(request, 'search.html', params)
     else:
         message = "You haven't searched for any project"
-    return render(request, 'search.html', {'message': message})
+    return render(request, 'prjts/search.html', {'message': message})
+
