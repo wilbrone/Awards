@@ -4,51 +4,71 @@
 
 {% block content %}
 
-<div class="container" style="margin-top:7%;">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-7">
-            <div class="row">
-                <button class="btn btn-sm btn-outline-danger ml-4 mb-3" data-toggle="modal" data-target="#Upload">
-                    Upload Profile
-                </button>
-                <div class="modal fade" id="Upload" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Profile Upload</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+<div class="container" style="margin-top:8%">
+    <div class="content-section">
+        <div class="media">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6 mt-3">
+                        <div class="media-body">
+                            <div class="account-heading"><span class="mr-3 text-secondary username">{{ user.username }}</span>
+                                <a class="btn btn-sm btn-outline-secondary mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
+                                <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><i class="fa fa-cog mt-3" id="cog"></i></a>
                             </div>
-                            <div class="modal-body">
-                                <form action="" method="post" enctype="multipart/form-data" novalidate>
-                                    {% csrf_token %}
-                                    {{ u_form|crispy }}
-                                    {{ p_form|crispy }}
-                                    <button class="btn btn-sm btn-outline-danger">Upload</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
-                                        Close
-                                    </button>
-                                </form>
+
+                            <div class="post-details mt-3 mb-3">
+                                <span class="mr-5"><strong>{{projects.count}}</strong> Posts</span>
                             </div>
+                            <h5>{{ user.profile.name }}</h5>
+                            <p class="text-secondary">{{ user.profile.bio }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <div>
+        <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a class="D-block mx-auto" href="">Change Password</a>
+                        <hr>
+                        <a class="D-block mx-auto" href="{% url 'logout' %}">Log Out</a>
+                        <hr>
+                        <a class="D-block mx-auto" href="" data-dismiss="modal">Close</a>
+                    </div>
 
-    {% for images in images %}
-    <div class="post-details mt-3 mb-3">
-        <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md ">
+                <div class="modal-content">
+                    <form action="" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                        {% csrf_token%}
+                        {{ u_form|crispy}}
+                        {{ p_form|crispy}}
+                        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-2 mr-3 mt-1 mb-2">
-        <img class="rounded-circle" src="{{ images.user.profile.profile_pic.url }}" width="45px" height="45px">
+    <hr class="mt-4">
+    <div class="card-columns">
+        {% for image in projects %}
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{image.image.cdn_url}}" alt="{{image.caption}}" class="card-img">
+                    <p id="overlay"class="text"> 
+                        <i class="fas fa-heart" style="font-size: 18"></i> 
+                        <span style="">{{image.likes.count}}</span>
+                        <i class="fas fa-comment ml-4" style=""></i> <span style="">{{image.comments.count}}</span>
+                    </p>
+                    
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    <h5>{{ user.profile.location }}</h5>
-    <p class="text-secondary">{{ user.profile.bio }}</p>
-    {% endfor %}
 </div>
 {% endblock %}

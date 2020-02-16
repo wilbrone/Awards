@@ -108,7 +108,7 @@ class ProfileList(APIView):
 
 @login_required(login_url='login')
 def posts(request):
-    users = User.objects.exclude(id=request.user.id)
+    users = User.objects.filter(id=request.user.id)
     if request.method == 'POST':
         form = UploadForm(request.POST,request.FILES)
         if form.is_valid():
@@ -119,7 +119,7 @@ def posts(request):
     else:
         form = UploadForm()
 
-    return render(request, 'prjts/post.html', {'form': form}, {'users':users})
+    return render(request, 'prjts/post.html', {'form': form, 'users':users})
 
 
 @login_required(login_url='login')
