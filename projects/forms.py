@@ -27,10 +27,9 @@ class UpdateUserProfileForm(forms.ModelForm):
 
 
 class UploadForm(forms.ModelForm):
-    # image = ImageField(label='image')
     class Meta:
         model = Project
-        fields = ['title', 'description', 'image', 'url']
+        fields = ['title', 'image', 'description', 'url']
 
 class RatingsForm(forms.ModelForm):
     class Meta:

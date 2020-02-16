@@ -10,7 +10,7 @@
     <div class="row">
         {% for posts in all_posts %}
         <div class="card" style="height: 50%; width: 30%; margin-top: 100px; margin-left: 30px; margin-bottom: 20px; box-shadow: 2px 2px 5px grey;">
-                {% comment %} <a href="{% url 'single_post' posts.title%}"><img src="{{posts.image.url}}" class="card-img-top" alt="{{posts.title}}" style="  height: 200px;"></a> {% endcomment %}
+                <a href="{% url 'single_post' posts.title%}"><img src="{{posts.image.url}}" class="card-img-top" alt="{{posts.title}}" style="  height: 200px;"></a>
                 <div class="card-body">
                   <h5 class="card-title">{{posts.title}}</h5>
                   <hr>

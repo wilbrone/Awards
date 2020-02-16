@@ -108,12 +108,13 @@ class ProfileList(APIView):
 
 @login_required(login_url='login')
 def posts(request):
-    users = User.objects.filter(id=request.user.id)
+    users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = UploadForm(request.POST,request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user.profile
+            print(post)
             post.save()
             return redirect('index')
     else:
