@@ -4,9 +4,9 @@
 <div class="container" style="margin-top:8%">
 
     <div class="card">
-        <div class="view overlay" style="background-image:url({{ post.image.cdn_url }})">
+        <div class="view overlay" style="background-image:url({{ post.image.url }})">
             <img class="card-img-top" style="visibility:hidden" width="100%"
-                 src="{{ post.image.cdn_url }}-/crop/1440x720/center/-/quality/lightest/" alt="">
+                 src="{{ post.image.url }}-/crop/1440x720/center/-/quality/lightest/" alt="">
             <a href="">
                 <div class="mask rgba-black-slight">
                     <div class="container">
@@ -36,7 +36,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title"><strong>{{post.title|title}}</strong>
-                <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-info mr-4"> Visit </a></h5>
+                <a href="{{ post.image_url }}" style="float:right" class="btn btn-sm btn-info mr-4"> Visit </a></h5>
             </p>
             <p>{{ post.description }}</p>
             <hr>

@@ -20,3 +20,4 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
     # path('profile/<username>/', views.profile, name='profile' ),
 ]
+

@@ -10,7 +10,7 @@
         {% for detail in details %}
         <div class="card" style="height: 50%; width: 30%; margin-top: 100px; margin-left: 30px; margin-bottom: 20px; box-shadow: 2px 2px 5px grey;">
             <div>
-                <img class="card-img-top" src="{{ detail.image.cdn_url }}" alt="{{detail.title}}" style="  height: 200px;">
+                <img class="card-img-top" src="{{ detail.image.url }}" alt="{{detail.title}}" style="  height: 200px;">
             </div>
             <div class="card-body">
                 <h4 class="card-title">{{detail.title|title}}</h4> 

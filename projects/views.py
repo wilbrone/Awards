@@ -111,10 +111,10 @@ def posts(request):
     users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = UploadForm(request.POST,request.FILES)
+        print(form)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user.profile
-            print(post)
             post.save()
             return redirect('index')
     else:
@@ -181,7 +181,7 @@ def search_project(request):
             'details': details,
             'message': message
         }
-        return render(request, 'search.html', params)
+        return render(request, 'prjts/search.html', params)
     else:
         message = "You haven't searched for any project"
     return render(request, 'prjts/search.html', {'message': message})
