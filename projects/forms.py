@@ -30,7 +30,7 @@ class UploadForm(forms.ModelForm):
     # image = ImageField(label='image')
     class Meta:
         model = Project
-        fields = ('title', 'description', 'image', 'url')
+        fields = ['title', 'description', 'image', 'url']
 
 class RatingsForm(forms.ModelForm):
     class Meta:

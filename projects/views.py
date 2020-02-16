@@ -68,7 +68,7 @@ def index(request):
         all_posts = Project.objects.all()
         
     except Project.DoesNotExist:
-        posts = None
+        all_posts = None
 
     return render(request, 'prjts/index.html', {'all_posts': all_posts})
 

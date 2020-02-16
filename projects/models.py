@@ -1,5 +1,4 @@
 from django.db import models
-from pyuploadcare.dj.models import ImageField
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models.signals import post_save
