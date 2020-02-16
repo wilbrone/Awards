@@ -55,7 +55,6 @@ simplejson==3.13.2
 six==1.13.0
 soupsieve==1.9.5
 sqlparse==0.3.0
-system-service==0.3
 systemd-python==234
 testresources==2.0.1
 ubuntu-drivers-common==0.0.0
