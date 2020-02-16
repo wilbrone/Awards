@@ -20,40 +20,49 @@
 </head>
 <body>
     <div class="navbar fixed-top bg-light">
-        <nav class="container">
-        <span class="navbar-brand mb-0 h1">
-            <a href="/" style="text-decoration:none;color:black">
-                <div id="brand" style="color:black;">InstaPhoto Gallery</div>
-                <div><i class="fas fa-camera-retro fa-2x"></i></div>
-            </a>
-        </span>
-            <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search' %}" >
-                <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
-                <i class="spinner "></i>
-            </form>
-            <span class="pull-right">
-                <div class="instaicon disc"></div>
-                <div class="instaicon like"></div>
-            </span>
-
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item" style="color:black;">
-                    <h6>{{ user.username }}</h6>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user fa-lg"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                        aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-                    </div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background-color: black; margin-bottom: 100px;">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}"> <strong class="mr-4 brand"> AwArDs</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <form class="form-inline" method="get" action="{% url 'search' %}">
+                        {% csrf_token %}
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-2 " type="text" placeholder="Search" name="title"
+                                aria-label="Search">
+                        </div>
+                    </form>
                 </li>
             </ul>
-        </nav>
+
+            <ul class="navbar-nav navbar-right">
+                {% if user.is_authenticated%}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">{{ user.username|title }}
+                    </a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item text-center" href="{% url 'profile' %}">Profile</a>
+                        <hr>
+                        <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item">LogOut</a>
+
+
+                    </div>
+                </li>
+                {% else %}
+                <a href="{% url 'login' %}" style="margin-right: 20px;" class="login btn btn-sm btn-info"> Register/LogIn </a>
+                {% endif %}
+                <a href="{% url 'posts' %}" class="login btn btn-sm btn-info"> UPLOAD PROJECT </a>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% comment %} <br> {% endcomment %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

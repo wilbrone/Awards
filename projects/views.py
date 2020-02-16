@@ -36,7 +36,7 @@ def signup(request):
 def profile(request):
     current_user = request.user
     profile = Profile.objects.all()
-    images = request.user.profile.posts.all()
+    projects = request.user.profile.projects.all()
 
     if request.method == 'POST':
         u_form = UpdateUserForm(request.POST,instance=request.user)
@@ -55,7 +55,7 @@ def profile(request):
     context = {
         'u_form':u_form,
         'p_form':p_form,
-        'images':images
+        'projects':projects
     }
 
     return render(request, 'registration/profile.html',locals())
