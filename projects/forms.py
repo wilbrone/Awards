@@ -29,7 +29,7 @@ class UpdateUserProfileForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('title', 'image', 'description', 'image_url')
+        fields = ['title', 'image', 'description', 'image_url']
 
 
 class RatingsForm(forms.ModelForm):

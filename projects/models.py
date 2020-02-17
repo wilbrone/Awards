@@ -38,7 +38,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length = 100)
-    image = models.ImageField(upload_to='project_pics/')
+    image = models.ImageField(upload_to='project_pics/',null=True,blank=True,default='default.png')
     image_url = models.CharField(max_length=250, null= True)
     description = models.TextField(max_length = 500)
     posted = models.DateTimeField(auto_now_add=True, null=True)
@@ -47,8 +47,8 @@ class Project(models.Model):
     def __str__(self):
         return f'{self.user} Project'
 
-    def get_absolute_url(self):
-        return f"/single_post/{self.id}"
+    # def get_absolute_url(self):
+    #     return f"/single_post/{self.id}"
 
     def save_project(self):
         self.save()
