@@ -59,11 +59,14 @@
         {% for image in projects %}
             <div class="card">
                 <div class="card-body">
-                    <img src="{{image.image.cdn_url}}" alt="{{image.caption}}" class="card-img">
-                    <p id="overlay"class="text"> 
-                        <i class="fas fa-heart" style="font-size: 18"></i> 
-                        <span style="">{{image.likes.count}}</span>
-                        <i class="fas fa-comment ml-4" style=""></i> <span style="">{{image.comments.count}}</span>
+                    <a href="{% url 'single_post' image.title %}">
+                        <img src="{{image.image.url}}" alt="{{image.title}}" class="card-img">
+                    </a>
+                    <p id="overlay"class="text">  
+                        <span style="">{{image.title}}</span><br>
+                        <a href="{{image.image_url}}">
+                            <button type="button" class="btn btn-info" style="height:;">view site</button>
+                        </a>
                     </p>
                     
                 </div>
