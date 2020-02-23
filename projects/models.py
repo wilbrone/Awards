@@ -53,8 +53,8 @@ class Project(models.Model):
     def save_project(self):
         self.save()
 
-    def delete_project(self):
-        self.delete()
+    def delete_project(self,id):
+        self.delete(id=id)
 
 
 class Rating(models.Model):

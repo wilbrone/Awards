@@ -35,7 +35,7 @@ class TestProject(TestCase):
         projects = Project.objects.all()
         self.assertTrue(len(projects) > 0)
 
-#     def test_delete_image(self):
-#         self.image_test.delete_image()
-#         after = Profile.objects.all()
-#         self.assertTrue(len(after) < 1)
+    def test_delete_image(self):
+        self.project_test.delete_project(self.project_test.id)
+        after = Profile.objects.all()
+        self.assertTrue(len(after) < 1)
